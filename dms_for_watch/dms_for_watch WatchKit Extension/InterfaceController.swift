@@ -17,6 +17,7 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var lblMenu: WKInterfaceLabel!
     
+    @IBOutlet weak var lblTime: WKInterfaceLabel!
     let formatter = DateFormatter()
     
     var date: Date!
@@ -26,6 +27,9 @@ class InterfaceController: WKInterfaceController {
     var dinnerMenu = ""
     
     var currentTime = 0
+    
+    var currentDate: String = ""
+    
     
     
     override func awake(withContext context: Any?) {
@@ -41,6 +45,7 @@ class InterfaceController: WKInterfaceController {
         setInit()
         connect()
         mealKindInit()
+        lblTime.setText(currentDate)
         
     }
     
@@ -88,8 +93,9 @@ class InterfaceController: WKInterfaceController {
         var dinnerData = ""
         
         formatter.dateFormat = "YYYY-MM-dd"
-        let dateStr = formatter.string(from: date)
+        var dateStr = formatter.string(from: date)
         print(dateStr)
+        currentDate = dateStr
         let url = "https://api.dsm-dms.com/meal/" + dateStr
         let request  = URLRequest(url: URL(string: url)!)
         

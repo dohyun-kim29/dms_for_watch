@@ -11,14 +11,15 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="dms_for_watch_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <dateLabel width="1" height="20" alignment="left" textAlignment="center" format="yyyy/MM/d" id="1UJ-Eg-w8D">
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <fontDescription key="font" type="system" weight="thin" pointSize="11"/>
-                        </dateLabel>
-                        <label width="1" alignment="left" text="끼니" textAlignment="center" id="CDH-5O-Dpm">
+                        <label alignment="center" text="시간" id="J58-B1-EJz">
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="system" pointSize="11"/>
                         </label>
-                        <label width="182" alignment="left" text="메뉴들" textAlignment="center" numberOfLines="0" id="drr-Hp-VG5">
+                        <label width="136" alignment="center" text="끼니" textAlignment="center" id="CDH-5O-Dpm">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" type="system" pointSize="13"/>
+                        </label>
+                        <label width="118" alignment="center" text="메뉴들" textAlignment="center" numberOfLines="0" id="drr-Hp-VG5">
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         </label>
                     </items>
@@ -26,10 +27,11 @@
                     <connections>
                         <outlet property="lblMealKind" destination="CDH-5O-Dpm" id="VbJ-WY-aOv"/>
                         <outlet property="lblMenu" destination="drr-Hp-VG5" id="9N7-B7-Lbh"/>
+                        <outlet property="lblTime" destination="J58-B1-EJz" id="TWE-k6-UK6"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-21" y="37"/>
+            <point key="canvasLocation" x="-20.695652173913043" y="37.1875"/>
         </scene>
     </scenes>
 </document>
