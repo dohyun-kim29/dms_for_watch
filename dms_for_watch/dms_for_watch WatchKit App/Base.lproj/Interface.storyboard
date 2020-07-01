@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38"/>
+    <device id="watch44"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
@@ -18,14 +18,18 @@
                         <label width="1" alignment="left" text="끼니" textAlignment="center" id="CDH-5O-Dpm">
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
-                        <label width="1" alignment="left" text="메뉴들" textAlignment="center" id="drr-Hp-VG5">
+                        <label width="182" alignment="left" text="메뉴들" textAlignment="center" numberOfLines="0" id="drr-Hp-VG5">
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         </label>
                     </items>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="lblMealKind" destination="CDH-5O-Dpm" id="VbJ-WY-aOv"/>
+                        <outlet property="lblMenu" destination="drr-Hp-VG5" id="9N7-B7-Lbh"/>
+                    </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="34" y="31"/>
+            <point key="canvasLocation" x="-21" y="37"/>
         </scene>
     </scenes>
 </document>
