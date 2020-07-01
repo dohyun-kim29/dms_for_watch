@@ -11,11 +11,16 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="dms_for_watch_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <dateLabel alignment="left" id="1UJ-Eg-w8D">
+                        <dateLabel width="1" height="20" alignment="left" textAlignment="center" format="yyyy/MM/d" id="1UJ-Eg-w8D">
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <dateFormatterStyle key="dateStyle" short="YES"/>
-                            <dateFormatterStyle key="timeStyle" short="YES"/>
+                            <fontDescription key="font" type="system" weight="thin" pointSize="11"/>
                         </dateLabel>
+                        <label width="1" alignment="left" text="끼니" textAlignment="center" id="CDH-5O-Dpm">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </label>
+                        <label width="1" alignment="left" text="메뉴들" textAlignment="center" id="drr-Hp-VG5">
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
                     </items>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </controller>
