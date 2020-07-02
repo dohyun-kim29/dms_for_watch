@@ -24,6 +24,7 @@
                                 <swipeGestureRecognizer id="fg0-3b-f6m"/>
                                 <swipeGestureRecognizer id="C1f-qT-x1i"/>
                                 <swipeGestureRecognizer id="9ot-OR-JI5"/>
+                                <swipeGestureRecognizer id="foJ-fp-o5h"/>
                             </gestureRecognizers>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         </label>

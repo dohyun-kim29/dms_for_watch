@@ -31,7 +31,7 @@ class InterfaceController: WKInterfaceController {
     
     var currentDate: String = ""
     
-    var swifeDirection = WKSwipeGestureRecognizer()
+    var swipeDirection = WKSwipeGestureRecognizer()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -48,8 +48,7 @@ class InterfaceController: WKInterfaceController {
         mealKindInit()
         lblTime.setText(currentDate)
         adjustDate()
-         
-        
+    
        
     }
     
@@ -58,13 +57,13 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    func swifeRecognizer() {
+    func swipeRecognizer() {
         
         
-            if swifeDirection.direction == .left {
+            if swipeDirection.direction == .left {
                 currentTime -= 1
             }
-            if swifeDirection.direction == .right {
+            if swipeDirection.direction == .right {
                 currentTime += 1
             }
     }
@@ -234,15 +233,7 @@ class InterfaceController: WKInterfaceController {
     }
     }
     
-    @objc func gestureHandler(gesture: WKSwipeGestureRecognizer) -> Void {
-        if gesture.direction == .left {
-            currentTime -= 1
-        }
-        else if gesture.direction == .right {
-            currentTime += 1
-        }
-    
-}
+   
 
 
     
