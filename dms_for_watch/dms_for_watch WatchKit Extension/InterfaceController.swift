@@ -81,16 +81,7 @@ class InterfaceController: WKInterfaceController {
         
     }
     
-    func swipeRecognizer() {
-        
-        
-            if swipeDirection.direction == .left {
-                currentTime -= 1
-            }
-            if swipeDirection.direction == .right {
-                currentTime += 1
-            }
-    }
+
     
     func setInit(){
         formatter.dateFormat = "H"
