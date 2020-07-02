@@ -63,7 +63,7 @@ class InterfaceController: WKInterfaceController {
         currentTime += 1
         adjustDate()
         connect()
-        setInit()
+      
         mealKindInit()
         lblTime.setText(currentDate)
     }
@@ -74,7 +74,7 @@ class InterfaceController: WKInterfaceController {
         currentTime -= 1
         adjustDate()
         connect()
-        setInit()
+        
         mealKindInit()
         lblTime.setText(currentDate)
         
