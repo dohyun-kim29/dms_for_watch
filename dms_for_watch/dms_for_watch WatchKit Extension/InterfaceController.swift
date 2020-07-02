@@ -47,8 +47,7 @@ class InterfaceController: WKInterfaceController {
         connect()
         mealKindInit()
         lblTime.setText(currentDate)
-        swifeRecognizer()
-        adjustDate()
+        
         
        
     }
@@ -60,14 +59,13 @@ class InterfaceController: WKInterfaceController {
     
     func swifeRecognizer() {
         
-        while true {
+        
             if swifeDirection.direction == .left {
                 currentTime -= 1
             }
             if swifeDirection.direction == .right {
                 currentTime += 1
             }
-        }
     }
     
     func setInit(){
