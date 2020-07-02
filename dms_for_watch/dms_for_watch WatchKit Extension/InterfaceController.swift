@@ -47,7 +47,8 @@ class InterfaceController: WKInterfaceController {
         connect()
         mealKindInit()
         lblTime.setText(currentDate)
-        
+        adjustDate()
+         
         
        
     }
@@ -233,6 +234,14 @@ class InterfaceController: WKInterfaceController {
     }
     }
     
+    @objc func gestureHandler(gesture: WKSwipeGestureRecognizer) -> Void {
+        if gesture.direction == .left {
+            currentTime -= 1
+        }
+        else if gesture.direction == .right {
+            currentTime += 1
+        }
+    
 }
 
 
@@ -242,3 +251,4 @@ class InterfaceController: WKInterfaceController {
     
 
 
+}
