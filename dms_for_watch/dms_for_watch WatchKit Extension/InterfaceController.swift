@@ -17,6 +17,7 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var lblMenu: WKInterfaceLabel!
     
+    
     @IBOutlet weak var lblTime: WKInterfaceLabel!
     let formatter = DateFormatter()
     
@@ -30,7 +31,7 @@ class InterfaceController: WKInterfaceController {
     
     var currentDate: String = ""
     
-    
+    var swifeDirection = WKSwipeGestureRecognizer()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -46,12 +47,26 @@ class InterfaceController: WKInterfaceController {
         connect()
         mealKindInit()
         lblTime.setText(currentDate)
+        swifeRecognizer()
         
+       
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    func swifeRecognizer() {
+        
+        while true {
+            if swifeDirection.direction == .left {
+                <#code#>
+            }
+            if swifeDirection.direction == .right {
+                <#code#>
+            }
+        }
     }
     
     func setInit(){

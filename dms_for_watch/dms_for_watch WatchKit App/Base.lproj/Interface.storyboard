@@ -20,6 +20,11 @@
                             <fontDescription key="font" type="system" pointSize="13"/>
                         </label>
                         <label width="118" alignment="center" text="메뉴들" textAlignment="center" numberOfLines="0" id="drr-Hp-VG5">
+                            <gestureRecognizers>
+                                <swipeGestureRecognizer id="fg0-3b-f6m"/>
+                                <swipeGestureRecognizer id="C1f-qT-x1i"/>
+                                <swipeGestureRecognizer id="9ot-OR-JI5"/>
+                            </gestureRecognizers>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         </label>
                     </items>
@@ -31,7 +36,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-20.695652173913043" y="37.1875"/>
+            <point key="canvasLocation" x="-16" y="44"/>
         </scene>
     </scenes>
 </document>
