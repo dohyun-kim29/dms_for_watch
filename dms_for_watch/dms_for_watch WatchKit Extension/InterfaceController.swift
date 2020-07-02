@@ -59,7 +59,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func btnSwipeRight() {
-        print("asdasd")
+        print("")
         currentTime += 1
         adjustDate()
         connect()
@@ -134,7 +134,6 @@ class InterfaceController: WKInterfaceController {
             [weak self] data, res, err in
 
             if let err = err { print(err.localizedDescription); return }
-            print((res as! HTTPURLResponse).statusCode)
             switch (res as! HTTPURLResponse).statusCode{
             case 200:
                 let jsonSerialization = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: [String: [String]]]
