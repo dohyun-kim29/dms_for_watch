@@ -59,7 +59,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func btnSwipeRight() {
-        print("")
+        print("right")
         currentTime += 1
         adjustDate()
         connect()
@@ -70,7 +70,7 @@ class InterfaceController: WKInterfaceController {
     
     
     @IBAction func btnSwipeLeft() {
-        print("asdasd")
+        print("left")
         currentTime -= 1
         adjustDate()
         connect()
