@@ -49,7 +49,7 @@ class InterfaceController: WKInterfaceController {
         mealKindInit()
         lblTime.setText(currentDate)
         adjustDate()
-        newLineStarter()
+    
     
        
     }
@@ -68,7 +68,7 @@ class InterfaceController: WKInterfaceController {
       
         mealKindInit()
         lblTime.setText(currentDate)
-        newLineStarter()
+        
     }
     
     
@@ -80,7 +80,8 @@ class InterfaceController: WKInterfaceController {
         
         mealKindInit()
         lblTime.setText(currentDate)
-        newLineStarter()
+        
+        
         
         
         
@@ -165,7 +166,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.breakfastMenu != "" {
-                        breakfastData = self!.breakfastMenu.replacingOccurrences(of: " ", with: "\n")
+                        breakfastData = self!.breakfastMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
                     }
                 }
                 if self!.currentTime == 0 {
@@ -192,7 +193,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.lunchMenu != "" {
-                        lunchData = self!.lunchMenu.replacingOccurrences(of: " ", with: "\n")
+                        lunchData = self!.lunchMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
                     }
                 }
                 if self!.currentTime == 1 {
@@ -219,7 +220,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.breakfastMenu != "" {
-                        dinnerData = self!.dinnerMenu.replacingOccurrences(of: " ", with: "\n")
+                        dinnerData = self!.dinnerMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
                     }
                 }
                 if self!.currentTime == 2 {
@@ -253,12 +254,7 @@ class InterfaceController: WKInterfaceController {
     }
     }
     
-    func newLineStarter() {
-        breakfastMenu.replacingOccurrences(of: " ", with: "\n")
-        lunchMenu.replacingOccurrences(of: " ", with: "\n")
-        dinnerMenu.replacingOccurrences(of: " ", with: "\n")
-    }
-
+   
 
     
     
