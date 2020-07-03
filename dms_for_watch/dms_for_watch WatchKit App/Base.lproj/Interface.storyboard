@@ -36,6 +36,7 @@
                                         <swipeGestureRecognizer id="foJ-fp-o5h"/>
                                     </gestureRecognizers>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <fontDescription key="font" type="system" pointSize="13"/>
                                 </label>
                                 <button width="26" height="47" alignment="right" verticalAlignment="center" backgroundImage="arrowtriangle.right.fill" catalog="system" id="tXj-pQ-AaI">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
