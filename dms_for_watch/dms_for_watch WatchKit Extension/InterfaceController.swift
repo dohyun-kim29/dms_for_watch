@@ -19,6 +19,7 @@ class InterfaceController: WKInterfaceController {
     
     
     @IBOutlet weak var lblTime: WKInterfaceLabel!
+    
     let formatter = DateFormatter()
     
     var date: Date!
@@ -48,6 +49,7 @@ class InterfaceController: WKInterfaceController {
         mealKindInit()
         lblTime.setText(currentDate)
         adjustDate()
+        newLineStarter()
     
        
     }
@@ -66,6 +68,7 @@ class InterfaceController: WKInterfaceController {
       
         mealKindInit()
         lblTime.setText(currentDate)
+        newLineStarter()
     }
     
     
@@ -77,6 +80,9 @@ class InterfaceController: WKInterfaceController {
         
         mealKindInit()
         lblTime.setText(currentDate)
+        newLineStarter()
+        
+        
         
         
     }
@@ -124,7 +130,7 @@ class InterfaceController: WKInterfaceController {
         var dinnerData = ""
         
         formatter.dateFormat = "YYYY-MM-dd"
-        var dateStr = formatter.string(from: date)
+        let dateStr = formatter.string(from: date)
         print(dateStr)
         currentDate = dateStr
         let url = "https://api.dsm-dms.com/meal/" + dateStr
@@ -159,7 +165,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.breakfastMenu != "" {
-                        breakfastData = self!.breakfastMenu
+                        breakfastData = self!.breakfastMenu.replacingOccurrences(of: " ", with: "\n")
                     }
                 }
                 if self!.currentTime == 0 {
@@ -186,7 +192,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.lunchMenu != "" {
-                        lunchData = self!.lunchMenu
+                        lunchData = self!.lunchMenu.replacingOccurrences(of: " ", with: "\n")
                     }
                 }
                 if self!.currentTime == 1 {
@@ -213,7 +219,7 @@ class InterfaceController: WKInterfaceController {
                         i += 1
                     }
                     if self!.breakfastMenu != "" {
-                        dinnerData = self!.dinnerMenu
+                        dinnerData = self!.dinnerMenu.replacingOccurrences(of: " ", with: "\n")
                     }
                 }
                 if self!.currentTime == 2 {
@@ -247,7 +253,11 @@ class InterfaceController: WKInterfaceController {
     }
     }
     
-   
+    func newLineStarter() {
+        breakfastMenu.replacingOccurrences(of: " ", with: "\n")
+        lunchMenu.replacingOccurrences(of: " ", with: "\n")
+        dinnerMenu.replacingOccurrences(of: " ", with: "\n")
+    }
 
 
     
