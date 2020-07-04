@@ -10,54 +10,39 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+// MARK: InterfaceController
 
+class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var lblMealKind: WKInterfaceLabel!
-    
     @IBOutlet weak var lblMenu: WKInterfaceLabel!
-    
-    
     @IBOutlet weak var lblTime: WKInterfaceLabel!
     
     let formatter = DateFormatter()
-    
     var date: Date!
     let aDay = TimeInterval(86400)
     var breakfastMenu = ""
     var lunchMenu = ""
     var dinnerMenu = ""
-    
     var currentTime = 0
-    
     var currentDate: String = ""
-    
     var swipeDirection = WKSwipeGestureRecognizer()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        // Configure interface objects here.
+    }
+    
+    override func didDeactivate() {
+        super.didDeactivate()
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         date = Date()
         setInit()
         connect()
-        mealKindInit()
         lblTime.setText(currentDate)
         adjustDate()
-    
-    
-       
-    }
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-        
     }
     
     @IBAction func btnSwipeRight() {
@@ -65,30 +50,16 @@ class InterfaceController: WKInterfaceController {
         currentTime += 1
         adjustDate()
         connect()
-      
-        mealKindInit()
         lblTime.setText(currentDate)
-        
     }
-    
     
     @IBAction func btnSwipeLeft() {
         print("left")
         currentTime -= 1
         adjustDate()
         connect()
-        
-        mealKindInit()
         lblTime.setText(currentDate)
-        
-        
-        
-        
-        
-        
     }
-    
-
     
     func setInit(){
         formatter.dateFormat = "H"
@@ -96,34 +67,18 @@ class InterfaceController: WKInterfaceController {
         switch curIntTime {
         case 0...8:
             currentTime = 0
+            self.lblMealKind.setText("아침")
         case 9...12:
             currentTime = 1
-            lblMealKind.setText("점심")
+            self.lblMealKind.setText("점심")
         case 13...17:
             currentTime = 2
-            lblMealKind.setText("저녁")
+            self.lblMealKind.setText("저녁")
         default:
             date! += aDay
             currentTime = 0
         }
     }
-    
-    
-    
-    func mealKindInit() {
-        switch currentTime {
-        case 0:
-            self.lblMealKind.setText("아침")
-        case 1:
-            self.lblMealKind.setText("점심")
-        case 2:
-            self.lblMealKind.setText("저녁")
-        default:
-            return
-        }
-    }
-
-    
     
     func connect(){
         var breakfastData = ""
@@ -139,19 +94,17 @@ class InterfaceController: WKInterfaceController {
         
         URLSession.shared.dataTask(with: request){
             [weak self] data, res, err in
-
+            
             if let err = err { print(err.localizedDescription); return }
             switch (res as! HTTPURLResponse).statusCode{
             case 200:
                 let jsonSerialization = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: [String: [String]]]
                 let list = jsonSerialization["\(dateStr)"]
+                if list == nil { return }
                 if jsonSerialization["breakfast"]?.count != 0 {
                     self!.breakfastMenu = ""
                     var i = 0
                     while true {
-                        if list == nil {
-                            return
-                        }
                         if list!["breakfast"] == nil {
                             breakfastData = "급식이 없습니다"
                             break
@@ -176,9 +129,6 @@ class InterfaceController: WKInterfaceController {
                     self!.lunchMenu = ""
                     var i = 0
                     while true {
-                        if list == nil {
-                            return
-                        }
                         if list!["lunch"] == nil {
                             breakfastData = "급식이 없습니다"
                             break
@@ -203,9 +153,6 @@ class InterfaceController: WKInterfaceController {
                     self!.dinnerMenu = ""
                     var i = 0
                     while true {
-                        if list == nil {
-                            return
-                        }
                         if list!["dinner"] == nil {
                             breakfastData = "급식이 없습니다"
                             break
@@ -226,40 +173,23 @@ class InterfaceController: WKInterfaceController {
                 if self!.currentTime == 2 {
                     self!.lblMenu.setText(dinnerData)
                 }
-                
-                print("\(jsonSerialization)")
-                
-                
             case 204: self!.lblMenu.setText("급식이 없습니다")
-            
             default:
                 return
             }
-           
-            }.resume()
+        }.resume()
     }
     
     func adjustDate(){
-    switch currentTime {
-    case -1:
-        date! -= aDay
-        currentTime = 2
-        
-    case 3:
-        date! += aDay
-        currentTime = 0
-        
-    default:
-        return
+        switch currentTime {
+        case -1:
+            date! -= aDay
+            currentTime = 2
+        case 3:
+            date! += aDay
+            currentTime = 0
+        default:
+            return
+        }
     }
-    }
-    
-   
-
-    
-    
-
-    
-
-
 }
