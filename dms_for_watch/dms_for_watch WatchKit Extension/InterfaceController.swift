@@ -21,9 +21,7 @@ class InterfaceController: WKInterfaceController {
     let formatter = DateFormatter()
     var date: Date!
     let aDay = TimeInterval(86400)
-    var breakfastMenu = ""
-    var lunchMenu = ""
-    var dinnerMenu = ""
+    var menu = ""
     var currentTime = 0
     var currentDate: String = ""
     var swipeDirection = WKSwipeGestureRecognizer()
@@ -32,146 +30,81 @@ class InterfaceController: WKInterfaceController {
         super.awake(withContext: context)
     }
     
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
-    
     override func willActivate() {
         super.willActivate()
         date = Date()
         setInit()
         connect()
+        mealKindInit()
         lblTime.setText(currentDate)
         adjustDate()
     }
     
+    override func didDeactivate() {
+        super.didDeactivate()
+    }
+    
     @IBAction func btnSwipeRight() {
-        print("right")
         currentTime += 1
         adjustDate()
         connect()
+        mealKindInit()
         lblTime.setText(currentDate)
     }
     
     @IBAction func btnSwipeLeft() {
-        print("left")
         currentTime -= 1
         adjustDate()
         connect()
+        mealKindInit()
         lblTime.setText(currentDate)
     }
     
     func setInit(){
         formatter.dateFormat = "H"
-        guard let curIntTime = Int(formatter.string(from: date)) else{ return }
-        switch curIntTime {
+        guard let intTime = Int(formatter.string(from: date)) else{ return }
+        switch intTime {
         case 0...8:
             currentTime = 0
-            self.lblMealKind.setText("아침")
         case 9...12:
             currentTime = 1
-            self.lblMealKind.setText("점심")
         case 13...17:
             currentTime = 2
-            self.lblMealKind.setText("저녁")
         default:
             date! += aDay
             currentTime = 0
         }
     }
     
+    func mealKindInit() {
+        switch currentTime {
+        case 0:
+            self.lblMealKind.setText("아침")
+        case 1:
+            self.lblMealKind.setText("점심")
+        case 2:
+            self.lblMealKind.setText("저녁")
+        default:
+            return
+        }
+    }
+    
     func connect(){
-        var breakfastData = ""
-        var lunchData = ""
-        var dinnerData = ""
-        
         formatter.dateFormat = "YYYY-MM-dd"
-        let dateStr = formatter.string(from: date)
-        print(dateStr)
-        currentDate = dateStr
-        let url = "https://api.dsm-dms.com/meal/" + dateStr
+        currentDate = formatter.string(from: date)
+        let url = "https://api.dsm-dms.com/meal/" + currentDate
         let request  = URLRequest(url: URL(string: url)!)
         
         URLSession.shared.dataTask(with: request){
             [weak self] data, res, err in
-            
             if let err = err { print(err.localizedDescription); return }
             switch (res as! HTTPURLResponse).statusCode{
             case 200:
-                let jsonSerialization = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: [String: [String]]]
-                let list = jsonSerialization["\(dateStr)"]
-                if list == nil { return }
-                if jsonSerialization["breakfast"]?.count != 0 {
-                    self!.breakfastMenu = ""
-                    var i = 0
-                    while true {
-                        if list!["breakfast"] == nil {
-                            breakfastData = "급식이 없습니다"
-                            break
-                        }
-                        if i < (list!["breakfast"]?.count)! {
-                            if self!.breakfastMenu == "" {  }
-                            else { self!.breakfastMenu += ", " }
-                            self!.breakfastMenu += list!["breakfast"]![i]
-                        } else {
-                            break
-                        }
-                        i += 1
-                    }
-                    if self!.breakfastMenu != "" {
-                        breakfastData = self!.breakfastMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
-                    }
-                }
-                if self!.currentTime == 0 {
-                    self!.lblMenu.setText(breakfastData)
-                }
-                if jsonSerialization["lunch"]?.count != 0 {
-                    self!.lunchMenu = ""
-                    var i = 0
-                    while true {
-                        if list!["lunch"] == nil {
-                            breakfastData = "급식이 없습니다"
-                            break
-                        }
-                        if i < (list!["lunch"]?.count)! {
-                            if self!.lunchMenu == "" {  }
-                            else { self!.lunchMenu += ", " }
-                            self!.lunchMenu += list!["lunch"]![i]
-                        } else {
-                            break
-                        }
-                        i += 1
-                    }
-                    if self!.lunchMenu != "" {
-                        lunchData = self!.lunchMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
-                    }
-                }
-                if self!.currentTime == 1 {
-                    self!.lblMenu.setText(lunchData)
-                }
-                if jsonSerialization["dinner"]?.count != 0 {
-                    self!.dinnerMenu = ""
-                    var i = 0
-                    while true {
-                        if list!["dinner"] == nil {
-                            breakfastData = "급식이 없습니다"
-                            break
-                        }
-                        if i < (list!["dinner"]?.count)! {
-                            if self!.dinnerMenu == "" {  }
-                            else { self!.dinnerMenu += ", " }
-                            self!.dinnerMenu += list!["dinner"]![i]
-                        } else {
-                            break
-                        }
-                        i += 1
-                    }
-                    if self!.breakfastMenu != "" {
-                        dinnerData = self!.dinnerMenu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
-                    }
-                }
-                if self!.currentTime == 2 {
-                    self!.lblMenu.setText(dinnerData)
+                switch self!.currentTime {
+                case 0: self!.sessionJson(data: data!, eatTime: "breakfast")
+                case 1: self!.sessionJson(data: data!, eatTime: "lunch")
+                case 2: self!.sessionJson(data: data!, eatTime: "dinner")
+                default: return
                 }
             case 204: self!.lblMenu.setText("급식이 없습니다")
             default:
@@ -190,6 +123,32 @@ class InterfaceController: WKInterfaceController {
             currentTime = 0
         default:
             return
+        }
+    }
+    
+    func sessionJson(data: Data, eatTime: String) {
+        let jsonSerialization = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: [String]]]
+        let list = jsonSerialization[self.currentDate]
+        var menuData = ""
+        self.menu = ""
+        var i = 0
+        if list == nil { return }
+        if list![eatTime] == nil {self.lblMenu.setText("급식이 없습니다"); return }
+        while true {
+            if i < (list![eatTime]?.count)! {
+                if self.menu == "" {  }
+                else { self.menu += ", " }
+                self.menu += list![eatTime]![i]
+            } else {
+                break
+            }
+            i += 1
+        }
+        if self.menu != "" {
+            menuData = self.menu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
+        }
+        if self.currentTime == currentTime {
+            self.lblMenu.setText(menu)
         }
     }
 }
