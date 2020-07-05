@@ -144,11 +144,9 @@ class InterfaceController: WKInterfaceController {
             }
             i += 1
         }
-        if self.menu != "" {
-            menuData = self.menu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " ")
-        }
+        
         if self.currentTime == currentTime {
-            self.lblMenu.setText(menu)
+            self.lblMenu.setText(menu.replacingOccurrences(of: " ", with: "\n").replacingOccurrences(of: ",", with: " "))
         }
     }
 }
