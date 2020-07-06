@@ -129,11 +129,14 @@ class InterfaceController: WKInterfaceController {
     func sessionJson(data: Data, eatTime: String) {
         let jsonSerialization = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: [String]]]
         let list = jsonSerialization[self.currentDate]
-        var menuData = ""
         self.menu = ""
         var i = 0
         if list == nil { return }
-        if list![eatTime] == nil {self.lblMenu.setText("급식이 없습니다"); return }
+        
+        if list![eatTime] == nil || list![eatTime]?.count == 1 {
+            self.lblMenu.setText("급식이 없습니다"); return
+        }
+    
         while true {
             if i < (list![eatTime]?.count)! {
                 if self.menu == "" {  }
