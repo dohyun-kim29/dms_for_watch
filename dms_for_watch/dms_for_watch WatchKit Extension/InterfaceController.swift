@@ -24,8 +24,7 @@ class InterfaceController: WKInterfaceController {
     var menu = ""
     var currentTime = 0
     var currentDate: String = ""
-    var swipeDirection = WKSwipeGestureRecognizer()
-    
+
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
     }
@@ -136,7 +135,7 @@ class InterfaceController: WKInterfaceController {
         if list![eatTime] == nil || list![eatTime]?.count == 1 {
             self.lblMenu.setText("급식이 없습니다"); return
         }
-    
+        
         while true {
             if i < (list![eatTime]?.count)! {
                 if self.menu == "" {  }
