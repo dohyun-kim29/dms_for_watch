@@ -43,7 +43,7 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    @IBAction func btnSwipeRight() {
+    @IBAction func btnGoRight() {
         currentTime += 1
         adjustDate()
         connect()
@@ -51,7 +51,7 @@ class InterfaceController: WKInterfaceController {
         lblTime.setText(currentDate)
     }
     
-    @IBAction func btnSwipeLeft() {
+    @IBAction func btnGoLeft() {
         currentTime -= 1
         adjustDate()
         connect()

@@ -25,7 +25,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" red="0.35686274509803922" green="0.75294117647058822" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="btnSwipeLeft" destination="AgC-eL-Hgc" id="09u-fQ-SwR"/>
+                                        <action selector="btnGoLeft" destination="AgC-eL-Hgc" id="09u-fQ-SwR"/>
                                     </connections>
                                 </button>
                                 <label width="118" alignment="center" text="메뉴들" textAlignment="center" numberOfLines="0" id="drr-Hp-VG5">
@@ -42,7 +42,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" red="0.35686274509803922" green="0.75294117647058822" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="btnSwipeRight" destination="AgC-eL-Hgc" id="xoc-i3-Jm3"/>
+                                        <action selector="btnGoRight" destination="AgC-eL-Hgc" id="xoc-i3-Jm3"/>
                                     </connections>
                                 </button>
                             </items>
